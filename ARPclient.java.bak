@@ -1,0 +1,23 @@
+import java.io.*;
+import java.net.*;
+class ARPclient
+{
+public static void main(String args[])throws Exception
+{
+DatagramSocket dg=new DatagramSocket();
+byte[] input=new byte[1000];
+byte[] output=new byte[1000];
+System.out.println("Enter the ip address");
+BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+String n=br.readLine();
+input=n.getBytes();
+InetAddress s=InetAddress.getByName("localhost");
+
+DatagramPacket ds=new DatagramPacket(input,input.length,s,8080);
+dg.send(ds);
+DatagramPacket dr=new DatagramPacket(output,output.length);
+dg.receive(dr);
+String s1=new String(dr.getData());
+s1=s1.trim();
+System.out.println("Mac-Address:"+s1);
+}
