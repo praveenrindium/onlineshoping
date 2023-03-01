@@ -1,0 +1,53 @@
+import java.io.*;
+import java.net.*;
+class Clientc
+{
+public static void main( String args[])throws Exception
+{
+String a="";
+String b="";
+String c="";
+String d="";
+String m="";
+String n="";
+String p="";
+ Socket s=new Socket("localhost",8080);
+System.out.println("Trying to connect...");
+ DataInputStream in=new DataInputStream(s.getInputStream());
+ DataOutputStream out=new DataOutputStream(s.getOutputStream());
+ DataInputStream cin=new DataInputStream(System.in);
+ a=in.readUTF();
+ System.out.println(a);
+ b=cin.readLine();
+ out.writeUTF(b);
+ c=in.readUTF();
+ System.out.println(c);
+ d=cin.readLine();
+ out.writeUTF(d);
+ System.out.println(in.readUTF());
+ System.out.println("Files are........");
+ while(!m.equals("end....select any one"))
+
+{
+ m=in.readUTF();
+ System.out.println(m);
+}
+p=cin.readLine();
+ out.writeUTF(p);
+ System.out.println(in.readUTF());
+ 
+File f4=new File("C:\\Users\\praveen IT\\Documents\\editplus programs\\transfered file"+p);
+FileOutputStream fo=new FileOutputStream(f4);
+DataOutputStream dou=new DataOutputStream(fo);
+while(!n.equals("null"))
+{
+ n=in.readUTF();
+ dou.writeUTF(n);
+ dou.writeUTF("\n");
+ }
+System.out.println("Transfer Completed");
+in.close();
+out.close();
+s.close();
+}
+}
